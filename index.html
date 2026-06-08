@@ -1,67 +1,878 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amatuz Zahura | QA Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Amatuz Zahura — Software QA Engineer specializing in Manual & Automation Testing. Based in Dhaka, Bangladesh." />
+<title>Amatuz Zahura — Software QA Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #16161f;
+    --surface: #1c1c28;
+    --border: rgba(255,255,255,0.07);
+    --accent: #7c6af7;
+    --accent2: #b48cfb;
+    --accent-glow: rgba(124,106,247,0.25);
+    --text: #e8e8f0;
+    --text2: #9898b0;
+    --text3: #5c5c78;
+    --green: #4ade80;
+    --tag-bg: rgba(124,106,247,0.12);
+    --tag-border: rgba(124,106,247,0.3);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 6vw;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--text2); text-decoration: none; font-size: 0.9rem;
+    font-weight: 500; letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent2); }
+  .nav-cta {
+    background: var(--accent); color: #fff;
+    padding: 9px 22px; border-radius: 6px;
+    font-size: 0.88rem; font-weight: 600;
+    text-decoration: none; transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: var(--bg);
+    flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-family: 'Syne', sans-serif; font-size: 1.5rem; color: var(--text); text-decoration: none; }
+  .mobile-menu a:hover { color: var(--accent); }
+  .close-btn { position: absolute; top: 20px; right: 28px; font-size: 2rem; color: var(--text2); cursor: pointer; background: none; border: none; }
+
+  /* ---- HERO ---- */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 6vw 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute; top: -200px; right: -100px;
+    width: 700px; height: 700px;
+    background: radial-gradient(ellipse, rgba(124,106,247,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-glow2 {
+    position: absolute; bottom: -150px; left: -50px;
+    width: 500px; height: 500px;
+    background: radial-gradient(ellipse, rgba(180,140,251,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+    max-width: 1200px; margin: 0 auto; width: 100%; position: relative;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--tag-bg); border: 1px solid var(--tag-border);
+    padding: 6px 14px; border-radius: 20px;
+    font-size: 0.8rem; font-weight: 500; color: var(--accent2);
+    margin-bottom: 20px; letter-spacing: 0.04em;
+  }
+  .hero-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 800; line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .hero-title em { color: var(--accent2); font-style: italic; }
+  .hero-subtitle { color: var(--text2); font-size: 1.05rem; max-width: 480px; margin-bottom: 36px; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    padding: 12px 28px; border-radius: 8px;
+    font-weight: 600; font-size: 0.95rem;
+    text-decoration: none; transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { box-shadow: 0 0 28px var(--accent-glow); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid var(--border); color: var(--text2);
+    padding: 12px 28px; border-radius: 8px;
+    font-weight: 500; font-size: 0.95rem;
+    text-decoration: none; transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent2); }
+
+  /* Code card */
+  .code-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+  }
+  .code-header {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 16px;
+    background: var(--surface); border-bottom: 1px solid var(--border);
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #ffbd2e; }
+  .dot-g { background: #28ca41; }
+  .code-filename { color: var(--text3); font-size: 0.78rem; margin-left: 6px; }
+  .code-body { padding: 20px; line-height: 1.9; }
+  .c-k { color: #c792ea; }
+  .c-f { color: #82aaff; }
+  .c-s { color: #c3e88d; }
+  .c-c { color: #546e7a; font-style: italic; }
+  .c-d { color: #ffcb6b; }
+  .c-n { color: var(--text2); }
+  .code-output {
+    padding: 14px 20px;
+    background: rgba(74,222,128,0.05);
+    border-top: 1px solid rgba(74,222,128,0.15);
+    color: var(--green); font-size: 0.8rem;
+  }
+  .code-tags {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    padding: 14px 20px; border-top: 1px solid var(--border);
+  }
+  .code-tag {
+    background: var(--tag-bg); border: 1px solid var(--tag-border);
+    color: var(--accent2); padding: 4px 10px; border-radius: 4px;
+    font-size: 0.72rem;
+  }
+
+  /* Stats */
+  .hero-stats { display: flex; gap: 32px; margin-top: 40px; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent2); }
+  .stat-label { font-size: 0.8rem; color: var(--text3); margin-top: 2px; }
+
+  /* ---- SECTIONS ---- */
+  section { padding: 90px 6vw; }
+  .section-tag {
+    display: inline-block; font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent2); margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800; letter-spacing: -0.03em; line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .section-sub { color: var(--text2); font-size: 1rem; max-width: 600px; margin-bottom: 56px; }
+  .max-w { max-width: 1200px; margin: 0 auto; }
+
+  /* ---- SERVICES ---- */
+  #services { background: var(--bg2); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .service-card {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 14px; padding: 32px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .service-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .service-icon { font-size: 2rem; margin-bottom: 16px; }
+  .service-card h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+  .service-card p { color: var(--text2); font-size: 0.92rem; }
+
+  /* ---- ABOUT ---- */
+  #about .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 28px 0 36px; }
+  .about-list li { display: flex; align-items: flex-start; gap: 10px; color: var(--text2); font-size: 0.95rem; }
+  .about-list li::before { content: '✦'; color: var(--accent); font-size: 0.7rem; margin-top: 5px; flex-shrink: 0; }
+  .about-list strong { color: var(--text); }
+  .about-img-wrap {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 20px; padding: 40px;
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .about-stat-row { display: flex; gap: 20px; }
+  .about-stat {
+    flex: 1; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px 16px; text-align: center;
+  }
+  .about-stat .num { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--accent2); }
+  .about-stat .lbl { color: var(--text3); font-size: 0.78rem; margin-top: 4px; }
+  .about-tools { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tool-pill {
+    background: var(--tag-bg); border: 1px solid var(--tag-border);
+    color: var(--accent2); padding: 6px 14px;
+    border-radius: 20px; font-size: 0.8rem; font-weight: 500;
+  }
+
+  /* ---- EXPERIENCE ---- */
+  #experience { background: var(--bg2); }
+  .timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
+  .timeline::before {
+    content: ''; position: absolute; left: 20px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .tl-item { padding-left: 56px; padding-bottom: 48px; position: relative; }
+  .tl-dot {
+    position: absolute; left: 12px; top: 6px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--accent); border: 3px solid var(--bg2);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .tl-current { background: var(--green); box-shadow: 0 0 12px rgba(74,222,128,0.4); }
+  .tl-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .tl-role { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; }
+  .tl-company { color: var(--accent2); font-weight: 600; font-size: 1rem; margin-bottom: 4px; }
+  .tl-date {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 4px 12px; border-radius: 20px;
+    font-size: 0.78rem; color: var(--text2); white-space: nowrap;
+  }
+  .tl-body {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px;
+  }
+  .tl-section { margin-bottom: 18px; }
+  .tl-section:last-child { margin-bottom: 0; }
+  .tl-section-title { font-size: 0.82rem; font-weight: 600; color: var(--accent2); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+  .tl-points { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .tl-points li { color: var(--text2); font-size: 0.92rem; padding-left: 16px; position: relative; }
+  .tl-points li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: 0.8rem; }
+
+  /* ---- SKILLS ---- */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+  .skill-card {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 14px; padding: 28px;
+  }
+  .skill-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 20px; color: var(--accent2); }
+  .skill-bar-wrap { margin-bottom: 14px; }
+  .skill-bar-label { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px; }
+  .skill-bar-label span:last-child { color: var(--text3); }
+  .skill-bar { height: 6px; background: var(--surface); border-radius: 3px; overflow: hidden; }
+  .skill-bar-fill {
+    height: 100%; border-radius: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transition: width 1.5s cubic-bezier(.4,0,.2,1);
+    width: 0;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    background: var(--tag-bg); border: 1px solid var(--tag-border);
+    color: var(--text2); padding: 5px 12px;
+    border-radius: 6px; font-size: 0.8rem;
+  }
+
+  /* ---- CERTS ---- */
+  #certifications { background: var(--bg2); }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .cert-card {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 14px; padding: 28px;
+    transition: border-color 0.3s;
+  }
+  .cert-card:hover { border-color: var(--accent); }
+  .cert-issuer { font-size: 0.78rem; color: var(--accent2); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .cert-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .cert-date { font-size: 0.82rem; color: var(--text3); }
+  .cert-id { font-size: 0.78rem; color: var(--text3); margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+
+  /* ---- CONTACT ---- */
+  #contact .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .contact-info { display: flex; flex-direction: column; gap: 16px; margin-top: 10px; }
+  .contact-item {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 20px;
+    text-decoration: none; color: var(--text);
+    transition: border-color 0.2s;
+  }
+  .contact-item:hover { border-color: var(--accent); }
+  .contact-icon { font-size: 1.3rem; }
+  .contact-label { font-size: 0.78rem; color: var(--text3); }
+  .contact-val { font-size: 0.95rem; font-weight: 500; }
+  .contact-form { background: var(--bg3); border: 1px solid var(--border); border-radius: 16px; padding: 36px; }
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-size: 0.85rem; color: var(--text2); margin-bottom: 6px; font-weight: 500; }
+  .form-group input, .form-group textarea {
+    width: 100%; background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); border-radius: 8px; padding: 12px 14px;
+    font-family: inherit; font-size: 0.95rem; outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+
+  /* ---- FOOTER ---- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 6vw;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+    color: var(--text3); font-size: 0.85rem;
+  }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { color: var(--text3); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent2); }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 900px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    #about .about-grid { grid-template-columns: 1fr; }
+    #contact .contact-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 20px; }
+    .timeline::before { display: none; }
+    .tl-item { padding-left: 0; }
+    .tl-dot { display: none; }
+  }
+</style>
 </head>
 <body>
-<header>
+
+<!-- NAV -->
 <nav>
-<div class="logo">AZ</div>
-<ul>
-<li><a href="#about">About</a></li>
-<li><a href="#experience">Experience</a></li>
-<li><a href="#skills">Skills</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
+  <a class="nav-logo" href="#"><span>A</span> AMATUZ</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Hire Me</a>
+  <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
-</header>
 
-<section class="hero">
-<div class="content">
-<p>Hello, I'm</p>
-<h1>Amatuz Zahura</h1>
-<h2>Software Quality Assurance Engineer</h2>
-<p>5+ years of experience in Automation, API, Performance and Quality Engineering.</p>
-<a href="#contact" class="btn">Contact Me</a>
+<div class="mobile-menu">
+  <button class="close-btn" onclick="document.querySelector('.mobile-menu').classList.remove('open')">✕</button>
+  <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('open')">About</a>
+  <a href="#services" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Services</a>
+  <a href="#experience" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Experience</a>
+  <a href="#skills" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Skills</a>
+  <a href="#certifications" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Certifications</a>
+  <a href="#contact" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Contact</a>
 </div>
-<div class="photo">
-<img src="profile.jpeg">
-</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">Available for new opportunities</div>
+      <h1 class="hero-title">Hello, my name's <em>Amatuz.</em> I'm a QA Engineer.</h1>
+      <p class="hero-subtitle">5+ years ensuring software excellence — combining test automation expertise with a sharp analytical mindset to deliver seamless user experiences.</p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="#contact">Contact Me</a>
+        <a class="btn-outline" href="https://amatuzzahura.netlify.app/" target="_blank">Visit Portfolio</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Years of Experience</div>
+        </div>
+        <div>
+          <div class="stat-num">4</div>
+          <div class="stat-label">Companies Served</div>
+        </div>
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Quality Focused</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-card">
+      <div class="code-header">
+        <span class="dot dot-r"></span>
+        <span class="dot dot-y"></span>
+        <span class="dot dot-g"></span>
+        <span class="code-filename">test_suite.py</span>
+      </div>
+      <div class="code-body">
+        <div><span class="c-k">import</span> <span class="c-n">pytest</span></div>
+        <div><span class="c-k">from</span> <span class="c-n">playwright.sync_api</span> <span class="c-k">import</span> <span class="c-n">Page</span></div>
+        <br/>
+        <div><span class="c-c"># Playwright E2E test — CMS workflow</span></div>
+        <div><span class="c-d">@pytest.mark.smoke</span></div>
+        <div><span class="c-k">def</span> <span class="c-f">test_cms_publish_flow</span>(<span class="c-n">page: Page</span>):</div>
+        <div>&nbsp;&nbsp;<span class="c-n">page</span>.<span class="c-f">goto</span>(<span class="c-s">"/admin/content"</span>)</div>
+        <div>&nbsp;&nbsp;<span class="c-n">page</span>.<span class="c-f">click</span>(<span class="c-s">"text=New Article"</span>)</div>
+        <div>&nbsp;&nbsp;<span class="c-n">page</span>.<span class="c-f">fill</span>(<span class="c-s">"#title"</span>, <span class="c-s">"Test Post"</span>)</div>
+        <div>&nbsp;&nbsp;<span class="c-n">page</span>.<span class="c-f">click</span>(<span class="c-s">"text=Publish"</span>)</div>
+        <div>&nbsp;&nbsp;<span class="c-k">assert</span> <span class="c-n">page</span>.<span class="c-f">is_visible</span>(<span class="c-s">"text=Published"</span>)</div>
+      </div>
+      <div class="code-output">✓ PASSED [100%] &nbsp;&nbsp; ✓ All tests passed</div>
+      <div class="code-tags">
+        <span class="code-tag">Playwright</span>
+        <span class="code-tag">JMeter</span>
+        <span class="code-tag">Selenium</span>
+        <span class="code-tag">Optimizely CMS</span>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- SERVICES -->
+<section id="services">
+  <div class="max-w">
+    <div class="section-tag">What I Offer</div>
+    <h2 class="section-title">My Services</h2>
+    <p class="section-sub">End-to-end quality assurance — manual and automated testing across web, CMS, APIs, and performance.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🔍</div>
+        <h3>Manual Testing</h3>
+        <p>Functional, regression, smoke, sanity, and exploratory testing. Detailed test case design, execution, and defect reporting with clear severity and priority classification.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤖</div>
+        <h3>Test Automation</h3>
+        <p>Playwright and Selenium-based automation frameworks for web. Scalable, maintainable test suites designed for CI/CD pipeline integration.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚡</div>
+        <h3>Performance Testing</h3>
+        <p>Load and performance testing with JMeter. Identify bottlenecks, analyze results, and ensure applications scale reliably under real-world traffic conditions.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔌</div>
+        <h3>API Testing</h3>
+        <p>REST API validation with Postman and Newman. Endpoint testing, data integrity checks, contract validation, and automated API regression suites.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌐</div>
+        <h3>CMS & Web Testing</h3>
+        <p>Deep expertise in Optimizely CMS testing — customized client requirements, cross-browser compatibility, visual regression with Backstop JS and Screaming Frog SEO audits.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">☁️</div>
+        <h3>Environment Setup</h3>
+        <p>Configure and manage testing environments both on-premise and cloud (Azure/AWS). Test plan writing, SRS/MRD analysis, and full SDLC participation in Agile/Scrum teams.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
 <section id="about">
-<h2>About Me</h2>
-<p>Currently working at Optimizely. Passionate about delivering reliable software through test automation, performance testing and quality engineering practices.</p>
+  <div class="max-w">
+    <div class="about-grid">
+      <div>
+        <div class="section-tag">About Me</div>
+        <h2 class="section-title">Manual + Automation QA Engineer</h2>
+        <p style="color:var(--text2);font-size:0.97rem;">I don't just find bugs — I engineer quality. With 5+ years in software QA, I bring deep expertise across the full testing lifecycle, from requirements analysis to production release sign-off.</p>
+        <ul class="about-list">
+          <li><span><strong>5+ years</strong> of professional QA experience — Manual &amp; Automation</span></li>
+          <li><span>Currently a <strong>Software QA Engineer at Optimizely</strong>, testing CMS for multiple global clients</span></li>
+          <li><span>Expertise in <strong>Playwright, Selenium, JMeter</strong> and cross-browser test automation</span></li>
+          <li><span>Cloud environment setup on <strong>Azure &amp; Amazon</strong> for scalable QA pipelines</span></li>
+          <li><span>Proficient in issue tracking with <strong>JIRA &amp; Trello</strong> in Agile/Scrum environments</span></li>
+          <li><span>BS in <strong>Computer Science &amp; Engineering</strong> — Ahsanullah University of Science and Technology</span></li>
+        </ul>
+        <a class="btn-primary" href="#contact">Hire Me</a>
+      </div>
+      <div class="about-img-wrap">
+        <div class="about-stat-row">
+          <div class="about-stat">
+            <div class="num">5+</div>
+            <div class="lbl">Years QA Experience</div>
+          </div>
+          <div class="about-stat">
+            <div class="num">4</div>
+            <div class="lbl">Companies</div>
+          </div>
+        </div>
+        <div class="about-stat-row">
+          <div class="about-stat">
+            <div class="num">3+</div>
+            <div class="lbl">Test Frameworks</div>
+          </div>
+          <div class="about-stat">
+            <div class="num">100%</div>
+            <div class="lbl">Delivery Quality</div>
+          </div>
+        </div>
+        <div class="about-tools">
+          <span class="tool-pill">Playwright</span>
+          <span class="tool-pill">Selenium</span>
+          <span class="tool-pill">JMeter</span>
+          <span class="tool-pill">Postman</span>
+          <span class="tool-pill">Backstop JS</span>
+          <span class="tool-pill">Screaming Frog</span>
+          <span class="tool-pill">JIRA</span>
+          <span class="tool-pill">Azure</span>
+          <span class="tool-pill">AWS</span>
+          <span class="tool-pill">MySQL</span>
+          <span class="tool-pill">Newman</span>
+          <span class="tool-pill">Trello</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- EXPERIENCE -->
 <section id="experience">
-<h2>Experience</h2>
-<div class="card"><h3>Optimizely</h3><p>Software QA Engineer • 2023 - Present</p></div>
-<div class="card"><h3>Jatri</h3><p>Software QA Engineer • 2022 - 2023</p></div>
-<div class="card"><h3>EchoLogyx Ltd</h3><p>Software QA Engineer • 2020 - 2022</p></div>
-<div class="card"><h3>Infix Tech BD</h3><p>Trainee SQA Engineer • 2020</p></div>
+  <div class="max-w">
+    <div class="section-tag">Career</div>
+    <h2 class="section-title">Work Experience</h2>
+    <p class="section-sub">Building quality engineering culture across CMS, web, mobile, and API testing — from startups to global software platforms.</p>
+
+    <div class="timeline">
+
+      <!-- Optimizely -->
+      <div class="tl-item">
+        <div class="tl-dot tl-current"></div>
+        <div class="tl-header">
+          <div>
+            <div class="tl-role">Software Quality Assurance Engineer</div>
+            <div class="tl-company">Optimizely</div>
+          </div>
+          <span class="tl-date">Apr 2023 — Present</span>
+        </div>
+        <div class="tl-body">
+          <div class="tl-section">
+            <div class="tl-section-title">CMS &amp; Component Testing</div>
+            <ul class="tl-points">
+              <li>Verify and test components developed by Optimizely development teams across multiple client projects</li>
+              <li>Test CMS with customized client requirements, delivering projects across industries and regions</li>
+              <li>Work across test frameworks including JMeter, Playwright, and Screaming Frog</li>
+            </ul>
+          </div>
+          <div class="tl-section">
+            <div class="tl-section-title">Planning &amp; Documentation</div>
+            <ul class="tl-points">
+              <li>Analyze market requirement specifications (MRD) and software requirements specifications (SRS)</li>
+              <li>Write comprehensive test plans and test cases aligned with project objectives</li>
+              <li>Analyze test results, report issues, and follow up to ensure resolution</li>
+            </ul>
+          </div>
+          <div class="tl-section">
+            <div class="tl-section-title">Environment &amp; Infrastructure</div>
+            <ul class="tl-points">
+              <li>Setup and configure testing environments both on-premise and on cloud (Azure/Amazon)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jatri -->
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div>
+            <div class="tl-role">Software Quality Assurance Engineer</div>
+            <div class="tl-company">Jatri</div>
+          </div>
+          <span class="tl-date">Sep 2022 — Apr 2023</span>
+        </div>
+        <div class="tl-body">
+          <div class="tl-section">
+            <div class="tl-section-title">Automation &amp; Frameworks</div>
+            <ul class="tl-points">
+              <li>Designed, developed, and maintained scalable test automation frameworks</li>
+              <li>Automated test cases to achieve higher efficiency without sacrificing quality</li>
+              <li>Researched new and improved automated testing tools and techniques</li>
+            </ul>
+          </div>
+          <div class="tl-section">
+            <div class="tl-section-title">QA Operations</div>
+            <ul class="tl-points">
+              <li>Analyzed project requirements and product objectives to create and maintain test case suites</li>
+              <li>Estimated test efforts, analyzed results, tracked defects, and participated in daily QA activities</li>
+              <li>Managed final quality sign-off on production releases</li>
+              <li>Handled test planning, prioritizing, and team coordination</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- EchoLogyx -->
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div>
+            <div class="tl-role">Software Quality Assurance Engineer</div>
+            <div class="tl-company">EchoLogyx Ltd</div>
+          </div>
+          <span class="tl-date">Sep 2020 — Aug 2022</span>
+        </div>
+        <div class="tl-body">
+          <div class="tl-section">
+            <div class="tl-section-title">Test Engineering</div>
+            <ul class="tl-points">
+              <li>Reviewed and analyzed requirements, specifications, and technical design documents</li>
+              <li>Developed detailed, comprehensive, and well-structured test plans and test cases</li>
+              <li>Designed, developed, and executed automated tests using Selenium</li>
+              <li>Performed API testing with Postman and Newman; regression and defect verification</li>
+              <li>Managed issues with JIRA and Trello</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Infix Tech -->
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div>
+            <div class="tl-role">Trainee SQA & Cyber Security Engineer</div>
+            <div class="tl-company">Infix Tech BD</div>
+          </div>
+          <span class="tl-date">Mar 2020 — Aug 2020</span>
+        </div>
+        <div class="tl-body">
+          <ul class="tl-points">
+            <li>Functional requirement analysis and manual test case creation</li>
+            <li>Smoke, sanity, system, regression, usability, UI &amp; compatibility testing</li>
+            <li>Worked within Agile/Scrum methodologies (SDLC)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Rajmoni -->
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div>
+            <div class="tl-role">IT Executive</div>
+            <div class="tl-company">Rajmoni International</div>
+          </div>
+          <span class="tl-date">Jul 2018 — Feb 2020</span>
+        </div>
+        <div class="tl-body">
+          <ul class="tl-points">
+            <li>Identified and promoted best IT practices, tools, and processes across departments</li>
+            <li>Identified system issues and recommended process improvements</li>
+            <li>Developed and implemented information security and privacy policies</li>
+            <li>Researched new technologies aligned with company growth goals</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
+<!-- SKILLS -->
 <section id="skills">
-<h2>Skills</h2>
-<div class="skills">
-<span>Playwright</span><span>Selenium</span><span>JMeter</span>
-<span>API Testing</span><span>Postman</span><span>MySQL</span>
-<span>JIRA</span><span>Agile</span><span>Performance Testing</span>
-</div>
+  <div class="max-w">
+    <div class="section-tag">Proficiency</div>
+    <h2 class="section-title">My Skills</h2>
+    <p class="section-sub">Manual precision meets automation power — a full-stack QA toolkit for modern software delivery.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Testing Expertise</h3>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Manual Testing</span><span>95%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="95"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Test Case Design</span><span>92%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="92"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>API Testing</span><span>88%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="88"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Performance Testing (JMeter)</span><span>85%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="85"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Automation Tools</h3>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Playwright</span><span>87%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="87"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Selenium</span><span>90%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="90"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Postman / Newman</span><span>88%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="88"></div></div>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-label"><span>Backstop JS</span><span>80%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="80"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Languages &amp; Tools</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">JIRA</span>
+          <span class="skill-tag">Trello</span>
+          <span class="skill-tag">Screaming Frog</span>
+          <span class="skill-tag">Microsoft Excel</span>
+          <span class="skill-tag">Azure</span>
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">Agile</span>
+          <span class="skill-tag">Scrum</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="max-w">
+    <div class="section-tag">Credentials</div>
+    <h2 class="section-title">Certifications</h2>
+    <p class="section-sub">Verified expertise across performance testing and quality engineering.</p>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-issuer">BlazeMeter University</div>
+        <h3>JMeter™ Intro</h3>
+        <div class="cert-date">Issued July 2024</div>
+        <div class="cert-id">Credential ID: 218794797</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">Ahsanullah University</div>
+        <h3>BSc, Computer Science &amp; Engineering</h3>
+        <div class="cert-date">2014 — 2018</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
 <section id="contact">
-<h2>Let's Connect</h2>
-<p>Email: amatuzzzahura@gmail.com</p>
-<p>GitHub: github.com/Amatuz</p>
-<p>LinkedIn: linkedin.com/in/amatuz-zahura</p>
+  <div class="max-w">
+    <div class="section-tag">Let's Connect</div>
+    <h2 class="section-title">Get In Touch</h2>
+    <p class="section-sub">Open to full-time QA roles, automation consulting, and freelance testing projects. Let's build quality together.</p>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info">
+          <a class="contact-item" href="mailto:amatuzzzahura@gmail.com">
+            <span class="contact-icon">✉️</span>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-val">amatuzzzahura@gmail.com</div>
+            </div>
+          </a>
+          <a class="contact-item" href="tel:01758971198">
+            <span class="contact-icon">📞</span>
+            <div>
+              <div class="contact-label">Phone</div>
+              <div class="contact-val">01758971198</div>
+            </div>
+          </a>
+          <a class="contact-item" href="https://linkedin.com/in/amatuz-zahura" target="_blank">
+            <span class="contact-icon">💼</span>
+            <div>
+              <div class="contact-label">LinkedIn</div>
+              <div class="contact-val">Amatuz Zahura</div>
+            </div>
+          </a>
+          <a class="contact-item" href="https://amatuzzahura.netlify.app/" target="_blank">
+            <span class="contact-icon">🌐</span>
+            <div>
+              <div class="contact-label">Portfolio</div>
+              <div class="contact-val">amatuzzahura.netlify.app</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" placeholder="Your name" />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell me about your project..."></textarea>
+        </div>
+        <a class="btn-primary" href="mailto:amatuzzzahura@gmail.com" style="display:inline-block">Send Me a Message</a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<footer>© 2026 Amatuz Zahura</footer>
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Amatuz Zahura · Software QA Engineer</span>
+  <div class="footer-links">
+    <a href="https://linkedin.com/in/amatuz-zahura" target="_blank">LinkedIn</a>
+    <a href="https://amatuzzahura.netlify.app/" target="_blank">Portfolio</a>
+    <a href="mailto:amatuzzzahura@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+  // Animate skill bars on scroll
+  const bars = document.querySelectorAll('.skill-bar-fill');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = e.target.dataset.width + '%';
+      }
+    });
+  }, { threshold: 0.3 });
+  bars.forEach(b => observer.observe(b));
+
+  // Smooth active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent2)' : '';
+    });
+  });
+</script>
 </body>
 </html>
