@@ -462,7 +462,34 @@
       <span class="hero-profile-loc">📍 Dhaka, Bangladesh</span>
     </div>
     </div><!-- end hero-profile-row -->
-    
+    <div class="code-card">
+      <div class="code-header">
+        <span class="dot dot-r"></span>
+        <span class="dot dot-y"></span>
+        <span class="dot dot-g"></span>
+        <span class="code-filename">test_suite.py</span>
+      </div>
+      <div class="code-body">
+        <div><span class="c-k">import</span> <span class="c-n">pytest</span></div>
+        <div><span class="c-k">from</span> <span class="c-n">playwright.sync_api</span> <span class="c-k">import</span> <span class="c-n">Page</span></div>
+        <br/>
+      
+        <div><span class="c-d">@pytest.mark.smoke</span></div>
+        <div><span class="c-k">def</span> <span class="c-f">test_cms_publish_flow</span>(<span class="c-n">page: Page</span>):</div>
+        <div>&nbsp;&nbsp;<span class="c-n">page</span>.<span class="c-f">goto</span>(<span class="c-s">"/admin/content"</span>)</div>
+        <div>&nbsp;&nbsp;<span class="c-n">page</span>.<span class="c-f">click</span>(<span class="c-s">"text=New Article"</span>)</div>
+        <div>&nbsp;&nbsp;<span class="c-n">page</span>.<span class="c-f">fill</span>(<span class="c-s">"#title"</span>, <span class="c-s">"Test Post"</span>)</div>
+        <div>&nbsp;&nbsp;<span class="c-n">page</span>.<span class="c-f">click</span>(<span class="c-s">"text=Publish"</span>)</div>
+        <div>&nbsp;&nbsp;<span class="c-k">assert</span> <span class="c-n">page</span>.<span class="c-f">is_visible</span>(<span class="c-s">"text=Published"</span>)</div>
+      </div>
+  
+      <div class="code-tags">
+        <span class="code-tag">Playwright</span>
+        <span class="code-tag">JMeter</span>
+        <span class="code-tag">Selenium</span>
+        <span class="code-tag">Optimizely CMS</span>
+      </div>
+    </div>
     </div><!-- end hero-photo-wrap -->
   </div>
 </section>
